@@ -1,26 +1,25 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import Modal from "./components/modal";
+import ImageUploader from "./components/ImageUploader";
+import Modal from "./components/Modal";
 
- 
 const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
     padding: 50px;
-    background-color: lightgrey;
+    gap: 10px;
 `
 
-const ImagesContainer = styled.div`
+const ImageContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    padding: 10px;
-    width: 800px;
+    width: 80%;
     min-height: 200px;
-    background-color: #fff;
-    img {
+    padding: 5px;
+    border: 1px solid lightgray;
+    >img {
         height: 200px;
     }
 `
@@ -28,30 +27,38 @@ const ImagesContainer = styled.div`
 function App() {
     const [showModal, setShowModal] = useState(false);
     const [images, setImages] = useState([]);
-    const [imgLink, setLink] = useState('');
 
-    const attach = useRef();
-   
-    function inputClicker() {
-        attach.current.click();
+    function closeModalHandler() {
+        setShowModal(false);
     }
 
-    function checkAttached(e) {
-        let blob = new Blob(e.target.files);
-        let link = URL.createObjectURL(blob);
-        setLink(link);
+    function showModalHadnler() {
+        setShowModal(true)
+    }
+
+    function addImage(url) {
+        if(!url) return;
+        let nextImages = [...images];
+        nextImages.push(url);
+        setImages(nextImages);
+        setShowModal(false);
     }
 
     return (
         <>  
-            {showModal && <Modal images={images} setImages={setImages} closeModal={setShowModal} uploadPhoto={inputClicker} imgLink={imgLink} setLink={setLink}/>}
-            <Container>
-                <ImagesContainer>
-                    {images.map((image, i) => <img src={image} key={i}/>)}
-                </ImagesContainer>
-                    <input ref={attach} type='file' hidden onChange={e => checkAttached(e)} />
-                    <button onClick={() => setShowModal(true)}>upload</button>
-            </Container>
+        {
+            showModal && 
+            <Modal closeModal={closeModalHandler}>
+                <ImageUploader closeModal={closeModalHandler} addImage={addImage}/>
+            </Modal>
+        }
+        <Container>
+            <ImageContainer>
+                {images.map((image, i) => <img src={image} key={i} />)}
+            </ImageContainer>
+            <button onClick={showModalHadnler}>Add Photo</button>
+        </Container> 
+       
         </> 
     );
 }
