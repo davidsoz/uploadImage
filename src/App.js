@@ -17,8 +17,10 @@ const ImageContainer = styled.div`
     gap: 5px;
     width: 80%;
     min-height: 200px;
+    max-height: 610px;
     padding: 5px;
     border: 1px solid lightgray;
+    overflow-y: scroll;
     >img {
         height: 200px;
     }
@@ -33,7 +35,7 @@ function App() {
     }
 
     function showModalHadnler() {
-        setShowModal(true)
+        setShowModal(true);
     }
 
     function addImage(url) {

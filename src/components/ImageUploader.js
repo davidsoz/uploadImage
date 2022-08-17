@@ -26,9 +26,23 @@ const ImageContainer = styled.div`
         position: absolute;
         opacity: 0.5;
         cursor: pointer;
+        animation: scal .9s infinite ease-in-out;
+        animation-direction: alternate;
+    }
+    >div {
+        @keyframes scal {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            } 
+            100% {
+                transform: scale(1.3);
+                opacity: 0.7;
+            }
+        }
     }
     >img {
-            height: 100%;
+        height: 100%;
     }
 `;
 
@@ -45,8 +59,6 @@ function ImageUploader({closeModal, addImage}) {
         let imageUrl = URL.createObjectURL(blob);
         setImageUrl(imageUrl);
     }
-
-    
 
     return (
         <Wrapper>

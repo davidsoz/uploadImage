@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ModalWrapper = styled.div`
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 `
 
 const BackDrop = styled.div`
