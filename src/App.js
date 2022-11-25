@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ImageUploader from "./components/ImageUploader";
-import Modal from "./components/Modal.js";
+import Modal from "../src/components/Modal";
 
 const Container = styled.div`
     display: flex;
