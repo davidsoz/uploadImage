@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ImageUploader from "./components/ImageUploader";
-import Modal from "./components/Modal";
+import Modal from "./components/Modal.js";
 
 const Container = styled.div`
     display: flex;
@@ -59,7 +59,7 @@ function App() {
         }
         <Container>
             <ImageContainer>
-                {images.map((image, i) => <img src={image} key={i} />)}
+                {images.map((img, i) => <img src={img} key={i} alt='some'/>)}
             </ImageContainer>
             <button onClick={showModalHadnler}>Add Photo</button>
         </Container> 
