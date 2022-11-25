@@ -9,6 +9,9 @@ const Container = styled.div`
     align-items: center;
     padding: 50px;
     gap: 10px;
+    button {
+        cursor: pointer;
+    }
 `
 
 const ImageContainer = styled.div`
@@ -60,7 +63,6 @@ function App() {
             </ImageContainer>
             <button onClick={showModalHadnler}>Add Photo</button>
         </Container> 
-       
         </> 
     );
 }
